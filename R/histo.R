@@ -70,7 +70,7 @@ p1 <- ggplot(df_uhreg_ger, aes(y = age_cut, fill = group)) +
     breaks = seq(-0.15, 0.05, 0.05), 
     labels = function(x) scales::percent(abs(x), accuracy = 1)
   ) +
-  scale_y_discrete(labels = paste0(c(0, seq(6,96, 5)), "-", seq(5,100,5))) +
+  scale_y_discrete(labels = paste0("[", c(0, seq(6,96, 5)), ",", seq(5,100,5), "]")) +
   geom_col(aes(x = ifelse(group == "GER", perc, -1*perc)), alpha = 0.6) +
   geom_vline(xintercept = 0, size = 0.25) +
   annotate(
@@ -167,5 +167,5 @@ ggsave("figures/age-density.png", width = 16, height = 4, units = "cm", dpi = 60
 (p1 | p2) / p3 + 
   patchwork::plot_layout(height = c(7, 3)) +
   plot_annotation(theme = theme(plot.margin = margin()))
-# ggsave("figures/age-composite.png", width = 16, height = 10, units = "cm", dpi = 600, bg = "white")
+ggsave("figures/age-composite.png", width = 16, height = 10, units = "cm", dpi = 600, bg = "white")
 ggsave("figures/age-composite.pdf", width = 16, height = 10, units = "cm", device = cairo_pdf, bg = "white")
